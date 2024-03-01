@@ -1,4 +1,5 @@
 package Rest;
+
 import java.awt.Graphics;
 
 public class ShapeDecorator implements Shape {
@@ -56,4 +57,6 @@ public class ShapeDecorator implements Shape {
   public Shape peel() {
     return decoratee;
   }
+
+
 }

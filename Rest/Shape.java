@@ -19,4 +19,9 @@ public interface Shape {
   public void resizeTo(Point point);
 
   public Shape peel();
+
+
+
+
+
 }

@@ -17,7 +17,7 @@ public class ShapeCont extends JPanel implements Pointable {
 
     public ShapeCont() {
         super();
-        currentState = new InsertState(); 
+        currentState = new InsertState();
         MouseHandler mouseHandler = new MouseHandler(this);
         this.addMouseListener(mouseHandler);
         this.addMouseMotionListener(mouseHandler);
@@ -36,7 +36,7 @@ public class ShapeCont extends JPanel implements Pointable {
     }
 
     public void select(Point point) {
-   
+
         for (Shape shape : shapes) {
             if (shape.intersects(point)) {
                 selected = shape;
@@ -62,7 +62,6 @@ public class ShapeCont extends JPanel implements Pointable {
         this.currentState = state;
     }
 
- 
     public Shape getSelected() {
         return selected;
     }
@@ -79,4 +78,12 @@ public class ShapeCont extends JPanel implements Pointable {
         shapes.remove(shape);
         repaint();
     }
+
+    public void replaceShape(Shape oldShape, Shape newShape) {
+        int index = shapes.indexOf(oldShape);
+        if (index != -1) {
+            shapes.set(index, newShape);
+        }
+    }
+
 }
