@@ -2,14 +2,22 @@ package State;
 
 import Rest.Circle;
 import Rest.Point;
+import Rest.Rectangle;
 import Rest.ShapeCont;
 
 
 public class InsertState implements State {
+    boolean cirkelEllerRektanel = true;
 
     @Override
     public void pointerDown(Point point, ShapeCont context) {
-        context.addShape(new Circle(point, Math.random() * 50.0));
+        if (cirkelEllerRektanel) {
+            context.addShape(new Circle(point, Math.random() * 50.0));
+            cirkelEllerRektanel = false;
+        } else {
+            context.addShape(new Rectangle(point, Math.random() * 50.0, Math.random() * 50.0));
+            cirkelEllerRektanel = true;
+        }
         context.repaint();
     }
 

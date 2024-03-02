@@ -20,8 +20,4 @@ public interface Shape {
 
   public Shape peel();
 
-
-
-
-
 }
