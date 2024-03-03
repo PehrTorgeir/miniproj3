@@ -26,6 +26,7 @@ public class ResizeState implements State {
     public void pointerUp(Point point, ShapeCont context) {
         context.setSelected(null);
         if (currentDecorator != null) {
+            context.replaceShape(currentDecorator, currentDecorator.getDecoratedShape());
             currentDecorator.removeMarker();
             currentDecorator = null;
             context.repaint();

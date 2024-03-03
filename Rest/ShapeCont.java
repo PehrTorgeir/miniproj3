@@ -14,14 +14,25 @@ public class ShapeCont extends JPanel implements Pointable {
     private List<Shape> shapes = new LinkedList<>();
     private State currentState;
     private Shape selected;
+    private Shape currentShape;
+
+    private static ShapeCont instance;
 
     public ShapeCont() {
         super();
         currentState = new InsertState();
         MouseHandler mouseHandler = new MouseHandler(this);
+        setShape("Circle");
         this.addMouseListener(mouseHandler);
         this.addMouseMotionListener(mouseHandler);
         this.setBackground(Color.white);
+    }
+
+    public static ShapeCont getInstance() {
+        if (instance == null) {
+            instance = new ShapeCont();
+        }
+        return instance;
     }
 
     public void addShape(Shape shape) {
@@ -84,6 +95,18 @@ public class ShapeCont extends JPanel implements Pointable {
         if (index != -1) {
             shapes.set(index, newShape);
         }
+    }
+
+    public Shape setShape(String string) {
+        if (string == "Circle") {
+            return this.currentShape = new Circle();
+        } else {
+            return this.currentShape = new Rectangle();
+        }
+    }
+
+    public Shape getShape() {
+        return currentShape;
     }
 
 }

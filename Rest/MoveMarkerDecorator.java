@@ -5,10 +5,10 @@ import java.awt.Graphics;
 
 public class MoveMarkerDecorator implements Shape {
     private Shape decoratedShape;
-    private boolean markerVisible = true; // New field to control marker visibility
+    private boolean markerVisible = true;
 
     public MoveMarkerDecorator(Shape decoratedShape) {
-        this.decoratedShape = decoratedShape;
+        this.decoratedShape = decoratedShape;;
     }
 
     @Override
@@ -17,13 +17,14 @@ public class MoveMarkerDecorator implements Shape {
         if (markerVisible) {
             g.setColor(Color.RED);
 
-            double x = decoratedShape.getPosition().getX();
-            double y = decoratedShape.getPosition().getY();
-            double width = decoratedShape.getWidth();
-            double height = decoratedShape.getHeight();
+            Point center = decoratedShape.calculateCenter();
+            double x = center.getX();
+            double y = center.getY();
 
-            g.drawLine((int) (x - width / 2), (int) y, (int) (x + width / 2), (int) y);
-            g.drawLine((int) x, (int) (y - height / 2), (int) x, (int) (y + height / 2));
+            g.drawLine((int) (x - decoratedShape.getWidth() / 2), (int) y, (int) (x + decoratedShape.getWidth() / 2),
+                    (int) y);
+            g.drawLine((int) x, (int) (y - decoratedShape.getHeight() / 2), (int) x,
+                    (int) (y + decoratedShape.getHeight() / 2));
 
             g.setColor(Color.BLACK);
         }
@@ -79,5 +80,10 @@ public class MoveMarkerDecorator implements Shape {
     @Override
     public Shape peel() {
         return decoratedShape.peel();
+    }
+
+    @Override
+    public Point calculateCenter() {
+        return decoratedShape.calculateCenter();
     }
 }

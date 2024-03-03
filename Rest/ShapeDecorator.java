@@ -10,13 +10,25 @@ public class ShapeDecorator implements Shape {
   }
 
   @Override
-  public void draw(Graphics g) {
-    decoratee.draw(g);
-    Point position = decoratee.getPosition();
-    int x = (int) (position.getX() - decoratee.getWidth() / 2.0 + 0.5);
-    int y = (int) (position.getY() - decoratee.getHeight() / 2.0 + 0.5);
-    g.fillOval(x, y, (int) (decoratee.getWidth() + 0.5), (int) (decoratee.getHeight() + 0.5));
-  }
+    public void draw(Graphics g) {
+        decoratee.draw(g);
+
+        Point position = decoratee.getPosition();
+        double x = position.getX();
+        double y = position.getY();
+
+        double width = decoratee.getWidth();
+        double height = decoratee.getHeight();
+
+        int drawX = (int) (x - width / 2.0 + 0.5);
+        int drawY = (int) (y - height / 2.0 + 0.5);
+
+        if (decoratee instanceof Circle) {
+            g.fillOval(drawX, drawY, (int) (width + 0.5), (int) (height + 0.5));
+        } else if (decoratee instanceof Rectangle) {
+            g.fillRect((int) (drawX + decoratee.getWidth()/2), (int) (drawY + decoratee.getHeight()/2), (int) (width + 0.5), (int) (height + 0.5));
+        }
+    }
 
   @Override
   public Point getPosition() {
@@ -56,6 +68,11 @@ public class ShapeDecorator implements Shape {
   @Override
   public Shape peel() {
     return decoratee;
+  }
+
+  @Override
+  public Point calculateCenter() {
+    return decoratee.calculateCenter();
   }
 
 

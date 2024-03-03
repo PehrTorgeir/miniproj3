@@ -10,7 +10,7 @@ import State.*;
 
 public class ShapeApp extends JFrame {
     private static final long serialVersionUID = 1L;
-    private ShapeCont shapeContainer = new ShapeCont();
+    private ShapeCont shapeContainer = ShapeCont.getInstance();
 
     public ShapeApp() {
         createMenu();
@@ -30,6 +30,12 @@ public class ShapeApp extends JFrame {
         createMenuItem(menu, "Resize", e -> shapeContainer.setState(new ResizeState()));
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(menu);
+
+        JMenu shapeMenu = new JMenu("Shapes");
+        createMenuItem(shapeMenu, "Circle", e -> shapeContainer.setShape("Circle"));
+        createMenuItem(shapeMenu, "Rectangle", e -> shapeContainer.setShape("Rectangle"));
+        menuBar.add(shapeMenu);
+
         this.setJMenuBar(menuBar);
     }
 

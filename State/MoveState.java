@@ -5,7 +5,6 @@ import Rest.Point;
 import Rest.Shape;
 import Rest.ShapeCont;
 
-
 public class MoveState implements State {
     private MoveMarkerDecorator currentDecorator;
 
@@ -25,9 +24,9 @@ public class MoveState implements State {
 
     @Override
     public void pointerUp(Point point, ShapeCont context) {
-        context.setSelected(null);
-
         if (currentDecorator != null) {
+            context.replaceShape(currentDecorator, currentDecorator.getDecoratedShape());
+            context.setSelected(null);
             currentDecorator.removeMarker();
             currentDecorator = null;
             context.repaint();

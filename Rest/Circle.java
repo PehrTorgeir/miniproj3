@@ -1,10 +1,14 @@
 package Rest;
-import java.awt.Graphics;
 
+import java.awt.Graphics;
 
 public class Circle implements Shape {
     private Point center;
     private double r;
+
+    public Circle() {
+
+    }
 
     public Circle(double x, double y, double r) {
         center = new Point(x, y);
@@ -61,5 +65,10 @@ public class Circle implements Shape {
     @Override
     public Shape peel() {
         return this;
+    }
+
+    @Override
+    public Point calculateCenter() {
+        return center;
     }
 }

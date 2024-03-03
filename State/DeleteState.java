@@ -17,11 +17,9 @@ public class DeleteState implements State {
 
     @Override
     public void pointerUp(Point point, ShapeCont context) {
-        // Nothing to do on pointer up in delete mode
     }
 
     @Override
     public void pointerMoved(Point point, boolean pointerDown, ShapeCont context) {
-        // Nothing to do on pointer move in delete mode
     }
 }

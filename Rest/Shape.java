@@ -20,4 +20,6 @@ public interface Shape {
 
   public Shape peel();
 
+  public Point calculateCenter();
+
 }

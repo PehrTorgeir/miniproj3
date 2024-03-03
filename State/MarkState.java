@@ -22,14 +22,11 @@ public class MarkState implements State {
 
     @Override
     public void pointerUp(Point point, ShapeCont context) {
-        // Nothing to do on pointer move in unmark mode
 
     }
 
     @Override
     public void pointerMoved(Point point, boolean pointerDown, ShapeCont context) {
-        // Nothing to do on pointer move in unmark mode
-
     }
 
 }

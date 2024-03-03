@@ -7,6 +7,10 @@ public class Rectangle implements Shape {
     private double width;
     private double height;
 
+    public Rectangle() {
+
+    }
+
     public Rectangle(double x, double y, double width, double height) {
         this.position = new Point(x, y);
         this.width = width;
@@ -21,7 +25,6 @@ public class Rectangle implements Shape {
 
     @Override
     public void draw(Graphics g) {
-        // Draw the rectangle
         g.drawRect((int) position.getX(), (int) position.getY(), (int) width, (int) height);
     }
 
@@ -42,33 +45,42 @@ public class Rectangle implements Shape {
 
     @Override
     public boolean intersects(Point point) {
-        // Check if the point is within the rectangle
         return point.getX() >= position.getX() && point.getX() <= position.getX() + width &&
-               point.getY() >= position.getY() && point.getY() <= position.getY() + height;
+                point.getY() >= position.getY() && point.getY() <= position.getY() + height;
     }
 
     @Override
     public void moveTo(Point point) {
-        // Move the rectangle to the specified point
+        point.setX(point.getX()-(width/2));
+        point.setY(point.getY()-(height/2));
         position.moveTo(point);
     }
 
     @Override
     public void move(double dx, double dy) {
-        // Move the rectangle by the specified displacement
         position.move(dx, dy);
     }
 
     @Override
     public void resizeTo(Point point) {
-        // Resize the rectangle to the specified point
-        width = point.getX() - position.getX();
-        height = point.getY() - position.getY();
+        double newWidth = Math.abs(position.getX() - point.getX());
+        double newHeight = Math.abs(position.getY() - point.getY());
+
+        if (newWidth > 0 && newHeight > 0) {
+            width = newWidth;
+            height = newHeight; 
+        }
     }
 
     @Override
     public Shape peel() {
-        // The peel operation for a rectangle (returning itself)
         return this;
+    }
+
+    @Override
+    public Point calculateCenter() {
+        double centerX = position.getX() + width / 2;
+        double centerY = position.getY() + height / 2;
+        return new Point(centerX, centerY);
     }
 }
